@@ -31,13 +31,13 @@
           a = $('#age').val(),
           s	= $('#sex').val();
 
-      if(h == ''){
-        alert('請輸入身高');
-      }else if (w == '') {
-        alert('請輸入體重');
+      if(h == ''| h < 0 ){
+        alert('請輸入正確的數值');
+      }else if (w == ''| w < 0) {
+        alert('請輸入正確的數值');
       }else if (h > 3 ) {
         alert('身高請輸入公尺')
-      }else if (a == '') {
+      }else if (a == ''| a < 0) {
         alert('請輸入年齡')
       }
 

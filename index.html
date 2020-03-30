@@ -1,12 +1,123 @@
 <!DOCTYPE html>
-<html>
+<html >
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+
+  <!-- 行動裝置支援 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>BMI 計算機</title>
+
+  <link rel="stylesheet" href="../../library/css/bootstrap.css">
+  <script src="../../library/js/jquery-3.4.1.js"></script>
+  <script src="../../library/js/bootstrap.js" charset="utf-8"></script>
+
+  <style>
+    .button-box{
+      padding-top: 30px;
+    }
+  </style>
+
+  <script>
+  $(function(){
+    $('#btn1').click(function(){
+      var h = $('#height').val(),
+          w = $('#weight').val(),
+          a = $('#age').val(),
+          s	= $('#sex').val();
+
+      if(h == ''){
+        alert('請輸入身高');
+      }else if (w == '') {
+        alert('請輸入體重');
+      }else if (h > 3 ) {
+        alert('身高請輸入公尺')
+      }else if (a == '') {
+        alert('請輸入年齡')
+      }
+
+      else {
+        var bmi = w/(h * h),
+            fat = (1.2 * bmi) + (0.23 * a - 5.4) - (10.8 * s);
+        $('#bmiresult').val(formatFloat(bmi,2));
+        $('#fatresult').val(formatFloat(fat,1));
+        $('#height').val('');
+        $('#weight').val('');
+        $('#age').val('');
+
+      }
+function formatFloat(num,pos){
+  var size = Math.pow(10, pos);
+  return Math.round(num*size)/size;
+}
+
+
+
+    });
+  });
+  </script>
+
 </head>
 <body>
-  <h1>My first website</h1>
+  <div class="container-fluid">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">BMI 計算機</a>
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="http://hahow.in" target="_blank">About</a>
+            </li>
+        </ul>
+        </div>
+    </nav>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="height">輸入身高(公尺)</label>
+          <input type="number" class="form-control" id="height"  placeholder="身高">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="weight">輸入體重（公斤）</label>
+          <input type="number" class="form-control" id="weight"  placeholder="體重">
+        </div>
+      </div>
+      <div class="col-md-4">
+          <div class="form-group">
+            <label for="age">輸入年齡</label>
+            <input type="number" class="form-control" id="age"  placeholder="年齡">
+          </div>
+      </div>
+      <div class="col-md-4">
+            <div class="form-group">
+              <label for="sex">性別</label>
+              <select class="form-control" id="sex">
+                <option id="man"   value="1">男</option>
+					      <option id="women" value="0">女</option>
+              </select>
+            </div>
+      </div>
+      <div class="col-md-1 button-box">
+          <button type="button" id="btn1" class="btn btn-primary btn-block">計算</button>
+      </div>
+      <div class="col-md-3 box">
+        <div class="formgroup">
+          <label for="bmiresult">您的BMI</label>
+          <input type="number" class="form-control" id="bmiresult" readonly="true">
+        </div>
+      </div>
+      <div class="col-md-3 box">
+        <div class="formgroup">
+          <label for="fatresult">您的體脂率(%)</label>
+          <input type="number" class="form-control" id="fatresult" readonly="true">
+        </div>
+      </div>
+    </div>
+
+  </div>
 </body>
 </html>
